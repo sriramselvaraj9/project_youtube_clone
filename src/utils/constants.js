@@ -12,7 +12,8 @@ import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 
-export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
+// Replace with your own logo URL for sriram media
+export const logo = 'https://dummyimage.com/120x40/222/fff&text=sriram+media';
 
 export const categories = [
   { name: 'New', icon: <HomeIcon />, },
@@ -34,9 +35,9 @@ export const categories = [
   { name: 'Crypto', icon: <DeveloperModeIcon />, },
 ];
 
-export const demoThumbnailUrl = 'https://i.ibb.co/G2L2Gwp/API-Course.png';
-export const demoChannelUrl = '/channel/UCmXmlB4-HJytD7wek0Uo97A';
-export const demoVideoUrl = '/video/GDa8kZLNhJ4';
-export const demoChannelTitle = 'JavaScript Mastery';
-export const demoVideoTitle = 'Build and Deploy 5 JavaScript & React API Projects in 10 Hours - Full Course | RapidAPI';
-export const demoProfilePicture = 'http://dergipark.org.tr/assets/app/images/buddy_sample.png'
+export const demoThumbnailUrl = 'https://dummyimage.com/320x180/2196f3/fff&text=sriram+media';
+export const demoChannelUrl = '/channel/sriram';
+export const demoVideoUrl = '/video/sriram';
+export const demoChannelTitle = 'sriram';
+export const demoVideoTitle = 'Welcome to sriram media!';
+export const demoProfilePicture = 'https://dummyimage.com/180x180/2196f3/fff&text=sriram'

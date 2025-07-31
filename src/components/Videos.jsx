@@ -10,8 +10,28 @@ const Videos = ({ videos, direction }) => {
     <Stack direction={direction || "row"} flexWrap="wrap" justifyContent="start" alignItems="start" gap={2}>
       {videos.map((item, idx) => (
         <Box key={idx}>
-          {item.id.videoId && <VideoCard video={item} /> }
-          {item.id.channelId && <ChannelCard channelDetail={item} />}
+          {/* Support both API and static videoData */}
+          {item.videoUrl ? (
+            <VideoCard
+              video={{
+                id: { videoId: item.id || item.id?.videoId || `static-${idx}` },
+                snippet: {
+                  title: item.title,
+                  channelTitle: item.channel,
+                  thumbnails: { high: { url: item.thumbnail } },
+                  channelId: item.channelId || `static-channel-${idx}`,
+                },
+                likes: item.likes,
+              }}
+              videos={videos}
+              index={idx}
+            />
+          ) : (
+            <>
+              {item.id?.videoId && <VideoCard video={item} videos={videos} index={idx} />}
+              {item.id?.channelId && <ChannelCard channelDetail={item} />}
+            </>
+          )}
         </Box>
       ))}
     </Stack>

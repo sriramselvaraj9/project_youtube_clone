@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { videoData } from "../utils/videoData";
 import { Videos } from "./";
 
 const SearchFeed = () => {
@@ -10,8 +10,14 @@ const SearchFeed = () => {
   const { searchTerm } = useParams();
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=${searchTerm}`)
-      .then((data) => setVideos(data.items))
+    // Simple search: match title, channel, or category
+    const term = searchTerm?.toLowerCase() || '';
+    const filtered = videoData.filter(v =>
+      v.title.toLowerCase().includes(term) ||
+      v.channel.toLowerCase().includes(term) ||
+      v.category.toLowerCase().includes(term)
+    );
+    setVideos(filtered);
   }, [searchTerm]);
 
   return (

@@ -3,17 +3,16 @@ import { Box, Stack, Typography } from "@mui/material";
 
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { Videos, Sidebar } from "./";
+import { videoData } from "../utils/videoData";
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
-  const [videos, setVideos] = useState(null);
+  const [videos, setVideos] = useState(videoData);
 
-  useEffect(() => {
-    setVideos(null);
-
-    fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
-      .then((data) => setVideos(data.items))
-    }, [selectedCategory]);
+  // Filter videos by category
+  const filteredVideos = selectedCategory === 'New'
+    ? videos
+    : videos.filter(v => v.category && v.category.toLowerCase() === selectedCategory.toLowerCase());
 
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
@@ -21,7 +20,7 @@ const Feed = () => {
         <Sidebar selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         
         <Typography className="copyright" variant="body2" sx={{ mt: 1.5, color: "#fff", }}>
-          Copyright © 2022 JSM Media
+          Copyright © 2025 sriram media
         </Typography>
       </Box>
 
@@ -30,7 +29,7 @@ const Feed = () => {
           {selectedCategory} <span style={{ color: "#FC1503" }}>videos</span>
         </Typography>
 
-        <Videos videos={videos} />
+        <Videos videos={filteredVideos} />
       </Box>
     </Stack>
   );
